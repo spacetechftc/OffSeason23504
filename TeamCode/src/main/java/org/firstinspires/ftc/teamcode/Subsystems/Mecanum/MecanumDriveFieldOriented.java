@@ -8,33 +8,34 @@ import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class MecanumDriveFieldOriented {
-    DcMotor bl, br, fl, fr;
+    DcMotor back_left_motor, back_right_motor, front_left_motor, front_right_motor;
     GoBildaPinpointDriver odo;
+
 
     private static final double XOFFSET_MM = 90;
     private static final double YOFFSET_MM = 80;
 
     public void init(HardwareMap hwMap){
-        bl = hwMap.get(DcMotor.class, "bl");
-        br = hwMap.get(DcMotor.class, "br");
-        fl = hwMap.get(DcMotor.class, "fl");
-        fr = hwMap.get(DcMotor.class, "fr");
+        back_left_motor = hwMap.get(DcMotor.class, "back_left_motor");
+        back_right_motor = hwMap.get(DcMotor.class, "back_right_motor");
+        front_left_motor = hwMap.get(DcMotor.class, "front_left_motor");
+        front_right_motor = hwMap.get(DcMotor.class, "front_right_motor");
 
 
-        br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        back_right_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        back_left_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        front_left_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        front_right_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        bl.setDirection(DcMotor.Direction.FORWARD);
-        br.setDirection(DcMotor.Direction.FORWARD);
-        fl.setDirection(DcMotor.Direction.FORWARD);
-        fr.setDirection(DcMotor.Direction.FORWARD);
+        back_right_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        back_left_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        front_left_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        front_right_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-        br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        front_left_motor.setDirection(DcMotor.Direction.FORWARD);
+        back_left_motor.setDirection(DcMotor.Direction.FORWARD);
+        front_right_motor.setDirection(DcMotor.Direction.REVERSE);
+        back_right_motor.setDirection(DcMotor.Direction.FORWARD);
 
         odo = hwMap.get(GoBildaPinpointDriver.class, "odo");
         odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.REVERSED, GoBildaPinpointDriver.EncoderDirection.REVERSED);
@@ -58,10 +59,10 @@ public class MecanumDriveFieldOriented {
         maxPower = Math.max(maxPower, Math.abs(brPower));
         maxPower = Math.max(maxPower, Math.abs(blPower));
 
-        fl.setPower(maxSpeed * (flPower / maxPower));
-        fr.setPower(maxSpeed * (frPower / maxPower));
-        bl.setPower(maxSpeed * (blPower / maxPower));
-        br.setPower(maxSpeed * (brPower / maxPower));
+        front_left_motor.setPower(maxSpeed * (flPower / maxPower));
+        front_right_motor.setPower(maxSpeed * (frPower / maxPower));
+        back_left_motor.setPower(maxSpeed * (blPower / maxPower));
+        back_right_motor.setPower(maxSpeed * (brPower / maxPower));
     }
 
     public void driveFieldRelative(double forward, double right, double rotate) {
@@ -82,10 +83,10 @@ public class MecanumDriveFieldOriented {
 
 
     public void switchZeroModeBehavior(DcMotor.ZeroPowerBehavior zeroPower){
-        br.setZeroPowerBehavior(zeroPower);
-        bl.setZeroPowerBehavior(zeroPower);
-        fl.setZeroPowerBehavior(zeroPower);
-        fr.setZeroPowerBehavior(zeroPower);
+        back_right_motor.setZeroPowerBehavior(zeroPower);
+        back_left_motor.setZeroPowerBehavior(zeroPower);
+        front_left_motor.setZeroPowerBehavior(zeroPower);
+        front_right_motor.setZeroPowerBehavior(zeroPower);
     }
 
 }

@@ -9,6 +9,7 @@ import com.pedropathing.ftc.localization.constants.PinpointConstants;
 import com.pedropathing.paths.PathConstraints;
 import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
@@ -18,7 +19,7 @@ public class Constants {
             .forwardZeroPowerAcceleration(-47.89428370842306)
             .lateralZeroPowerAcceleration(-59.453233028422474 )
             .translationalPIDFCoefficients(new PIDFCoefficients(0.03, 0, 0.0003, 0.03))
-            .headingPIDFCoefficients(new PIDFCoefficients(-1, 0, 0.0003, 0.03))
+            .headingPIDFCoefficients(new PIDFCoefficients(-1, 0, 0.0003, 0.03));
             ;
 
 
@@ -30,11 +31,11 @@ public class Constants {
 
     public static MecanumConstants driveConstants = new MecanumConstants()
             .maxPower(1)
-            .rightFrontMotorName("front_right_motor")
-            .rightRearMotorName("back_right_motor")
-            .leftRearMotorName("back_left_motor")
-            .leftFrontMotorName("front_left_motor")
-            .leftFrontMotorDirection(DcMotor.Direction.REVERSE)
+            .rightFrontMotorName("fr")
+            .rightRearMotorName("rr")
+            .leftRearMotorName("rl")
+            .leftFrontMotorName("fl")
+            .leftFrontMotorDirection(DcMotor.Direction.FORWARD)
             .leftRearMotorDirection(DcMotor.Direction.FORWARD)
             .rightFrontMotorDirection(DcMotor.Direction.REVERSE)
             .rightRearMotorDirection(DcMotor.Direction.FORWARD)
@@ -59,7 +60,7 @@ public class Constants {
             .forwardPodY(-90.0)
             .strafePodX(-85.0)
             .distanceUnit(DistanceUnit.MM)
-            .hardwareMapName("odo")
+            .hardwareMapName("pinpoint")
             .customEncoderResolution(19.8943)
             .forwardEncoderDirection(GoBildaPinpointDriver.EncoderDirection.FORWARD)
             .strafeEncoderDirection(GoBildaPinpointDriver.EncoderDirection.REVERSED);

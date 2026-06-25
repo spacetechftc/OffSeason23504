@@ -1,33 +1,43 @@
 package org.firstinspires.ftc.teamcode.Subsystems.Mecanum;
 
+import com.qualcomm.hardware.gobilda.GoBildaPinpointDriver;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 public class MecanumDrive {
-    DcMotor bl, br, fl, fr;
+    DcMotor back_left_motor, back_right_motor, front_left_motor, front_right_motor;
+    GoBildaPinpointDriver odo;
 
     public void init(HardwareMap hwMap){
-        bl = hwMap.get(DcMotor.class, "bl");
-        br = hwMap.get(DcMotor.class, "br");
-        fl = hwMap.get(DcMotor.class, "fl");
-        fr = hwMap.get(DcMotor.class, "fr");
+        back_left_motor = hwMap.get(DcMotor.class, "bl");
+        back_right_motor = hwMap.get(DcMotor.class, "br");
+        front_left_motor = hwMap.get(DcMotor.class, "fl");
+        front_right_motor = hwMap.get(DcMotor.class, "fr");
 
 
-        br.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        bl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        fl.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        fr.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        back_right_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        back_left_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        front_left_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        front_right_motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
-        bl.setDirection(DcMotor.Direction.REVERSE);
-        br.setDirection(DcMotor.Direction.FORWARD);
-        fl.setDirection(DcMotor.Direction.FORWARD);
-        fr.setDirection(DcMotor.Direction.FORWARD);
+        back_left_motor.setDirection(DcMotor.Direction.FORWARD);
+        back_right_motor.setDirection(DcMotor.Direction.FORWARD);
+        front_left_motor.setDirection(DcMotor.Direction.FORWARD);
+        front_right_motor.setDirection(DcMotor.Direction.FORWARD);
 
-        br.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        bl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        fl.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        fr.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        back_right_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        back_left_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        front_left_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        front_right_motor.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+        odo = hwMap.get(GoBildaPinpointDriver.class, "odo");
+        odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
+        odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.REVERSED);
+        odo.setOffsets(-85, -90, DistanceUnit.MM);
+
 
     }
 
@@ -46,16 +56,16 @@ public class MecanumDrive {
         maxPower = Math.max(maxPower, Math.abs(brPower));
         maxPower = Math.max(maxPower, Math.abs(blPower));
 
-        fl.setPower(maxSpeed * (flPower / maxPower));
-        fr.setPower(maxSpeed * (frPower / maxPower));
-        bl.setPower(maxSpeed * (blPower / maxPower));
-        br.setPower(maxSpeed * (brPower / maxPower));
+        front_left_motor.setPower(maxSpeed * (flPower / maxPower));
+        front_right_motor.setPower(maxSpeed * (frPower / maxPower));
+        back_left_motor.setPower(maxSpeed * (blPower / maxPower));
+        back_right_motor.setPower(maxSpeed * (brPower / maxPower));
     }
 
     public void switchZeroModeBehavior(DcMotor.ZeroPowerBehavior zeroPower){
-        br.setZeroPowerBehavior(zeroPower);
-        bl.setZeroPowerBehavior(zeroPower);
-        fl.setZeroPowerBehavior(zeroPower);
-        fr.setZeroPowerBehavior(zeroPower);
+        back_right_motor.setZeroPowerBehavior(zeroPower);
+        back_left_motor.setZeroPowerBehavior(zeroPower);
+        front_left_motor.setZeroPowerBehavior(zeroPower);
+        front_right_motor.setZeroPowerBehavior(zeroPower);
     }
 }

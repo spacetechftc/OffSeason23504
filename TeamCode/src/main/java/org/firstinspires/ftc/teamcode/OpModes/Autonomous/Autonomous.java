@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import org.firstinspires.ftc.teamcode.pedroPathing.Constants;
 
 
-@com.qualcomm.robotcore.eventloop.opmode.Autonomous
 public class Autonomous extends OpMode {
     private Follower follower;
 
