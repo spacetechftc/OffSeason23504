@@ -32,15 +32,10 @@ public class Pinpoint {
         return odo.getHeading(AngleUnit.DEGREES);
     }
 
-    public void Telemetry(Telemetry telemetry){
-        telemetry.addData("X (CM)" , getX());
-        telemetry.addData("Y (CM)" , getY());
-        telemetry.addData("Heading" , getHeading());
-    }
-
     public String getStatus() {
         return odo.getDeviceStatus().toString();
     }
+
     public void update(Telemetry telemetry){
         telemetry.update();
     }

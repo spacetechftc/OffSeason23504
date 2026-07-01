@@ -134,10 +134,8 @@ public class AutonomousV2 extends OpMode {
 
     }
 
-
+    
     // Atualização Posições
-
-
     public void statePathUpdate(){
         switch (pathState) {
             case START_POS_TO_SHOOT:
