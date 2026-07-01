@@ -12,14 +12,13 @@ import dev.nextftc.hardware.impl.MotorEx;
 public class MecanumDrive implements Subsystem {
 
 
-    // Instância dos Motores
+
+    // Criação dos Motores
     private final MotorEx frontLeftMotor;
     private final MotorEx backLeftMotor;
     private final MotorEx frontRightMotor;
     private final MotorEx backRightMotor;
     private final Pinpoint pinpoint;
-
-
 
     // Construtor
 
@@ -27,8 +26,8 @@ public class MecanumDrive implements Subsystem {
         this.pinpoint = pinpoint;
         frontLeftMotor = new MotorEx("fl").brakeMode();
         frontRightMotor = new MotorEx("fr").brakeMode();
-        backLeftMotor = new MotorEx("bl").brakeMode();
-        backRightMotor = new MotorEx("br").reversed().brakeMode();
+        backLeftMotor = new MotorEx("rl").brakeMode();
+        backRightMotor = new MotorEx("rr").brakeMode();
     }
 
 

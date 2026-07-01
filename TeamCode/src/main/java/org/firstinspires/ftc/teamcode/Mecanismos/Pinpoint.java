@@ -11,7 +11,7 @@ public class Pinpoint {
     GoBildaPinpointDriver odo;
 
     public void init(HardwareMap hwMap){
-        odo = hwMap.get(GoBildaPinpointDriver.class, "odo");
+        odo = hwMap.get(GoBildaPinpointDriver.class, "pinpoint");
         odo.setEncoderResolution(GoBildaPinpointDriver.GoBildaOdometryPods.goBILDA_4_BAR_POD);
         odo.setEncoderDirections(GoBildaPinpointDriver.EncoderDirection.FORWARD, GoBildaPinpointDriver.EncoderDirection.REVERSED);
         odo.setOffsets(-85, -90, DistanceUnit.MM);

@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
 import org.firstinspires.ftc.teamcode.Mecanismos.Pinpoint;
 import org.firstinspires.ftc.teamcode.Subsystems.Intake;
 import org.firstinspires.ftc.teamcode.Subsystems.MecanumDrive;
@@ -9,6 +11,7 @@ import dev.nextftc.ftc.Gamepads;
 import dev.nextftc.ftc.NextFTCOpMode;
 import dev.nextftc.ftc.components.BulkReadComponent;
 
+@TeleOp
 public class TeleOpNextFTC extends NextFTCOpMode {
     private MecanumDrive mecanumDrive;
     private Pinpoint pinpoint = new Pinpoint();
