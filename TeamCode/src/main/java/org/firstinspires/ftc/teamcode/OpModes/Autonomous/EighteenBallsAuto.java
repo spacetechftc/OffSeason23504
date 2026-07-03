@@ -17,7 +17,7 @@ import dev.nextftc.extensions.pedro.FollowPath;
 import dev.nextftc.extensions.pedro.PedroComponent;
 import dev.nextftc.ftc.NextFTCOpMode;
 import dev.nextftc.ftc.components.BulkReadComponent;
-@Autonomous (name = "18 ARTIFACTS AUTONOMOUS RED", group = "Auto RED", preselectTeleOp = "TeleOpNextFTC")
+@Autonomous (name = "18 ARTIFACTS AUTONOMOUS RED", group = "Autonomous", preselectTeleOp = "TeleOpNextFTC")
 public class EighteenBallsAuto extends NextFTCOpMode {
     public EighteenBallsAuto(){
         addComponents(
@@ -104,7 +104,7 @@ public class EighteenBallsAuto extends NextFTCOpMode {
                 .addParametricCallback(0.8, Intake.INSTANCE.stopMotors)
                 .addPath(new BezierLine(openGate, scorePose))
                 .setLinearHeadingInterpolation(openGate.getHeading(), scorePose.getHeading())
-                .addParametricCallback(1, Intake.INSTANCE.eject)
+                .addParametricCallback(0.98, Intake.INSTANCE.eject)
                 .build();
     }
 
