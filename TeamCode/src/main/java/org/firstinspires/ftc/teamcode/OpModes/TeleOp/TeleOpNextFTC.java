@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.OpModes.TeleOp;
 
 import static org.firstinspires.ftc.teamcode.OpModes.Autonomous.EighteenBallsAuto.finalPoseAuto;
-
 import com.pedropathing.geometry.Pose;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.skeletonarmy.marrow.zones.Point;
@@ -18,12 +17,15 @@ import dev.nextftc.ftc.components.BulkReadComponent;
 
 @TeleOp(name = "TeleOpNextFTC", group = "TeleOp")
 public class TeleOpNextFTC extends NextFTCOpMode {
-    private MecanumDrive mecanumDrive;
-    public Pose startingPose = finalPoseAuto;
+    private MecanumDrive mecanumDrive = new MecanumDrive();
 
+
+    private final Pose startPose = new Pose(37.90965732087227, 32.84034267912772, Math.toRadians(90));
+
+    public Pose startingPose = startPose;
     private final PolygonZone blueBase = new PolygonZone(new Point(105.5, 33.5), 20, 20);
     private final PolygonZone redBase = new PolygonZone(new Point(38.5, 33.5), 20, 20);
-    private final PolygonZone robotZone = new PolygonZone(18, 18);
+    private final PolygonZone robotZone = new PolygonZone(14, 14);
 
 
 
@@ -38,7 +40,6 @@ public class TeleOpNextFTC extends NextFTCOpMode {
 
     @Override
     public void onInit() {
-        mecanumDrive = new MecanumDrive();
         PedroComponent.follower().setStartingPose(startingPose == null ? new Pose() : startingPose);
         PedroComponent.follower().updatePose();
     }
@@ -60,16 +61,19 @@ public class TeleOpNextFTC extends NextFTCOpMode {
 
     @Override
     public void onUpdate() {
+
         robotZone.setPosition(PedroComponent.follower().getPose().getX(), PedroComponent.follower().getPose().getY());
         robotZone.setRotation(PedroComponent.follower().getHeading());
 
-        if(robotZone.isInside(redBase)){
+        if(robotZone.isInside(blueBase)){
             telemetry.addLine("Robot INSIDE Red Base!");
         }else {
             telemetry.addLine("Robot OUTSIDE Red Base");
         }
 
-        telemetry.addData("Distance to Blue Base", robotZone.distanceTo(redBase));
+        telemetry.addData("Distance to Blue Base", robotZone.distanceTo(blueBase));
+        telemetry.update();
+
 
         PedroComponent.follower().update();
     }

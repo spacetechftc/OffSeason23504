@@ -28,7 +28,6 @@ public class EighteenBallsAuto extends NextFTCOpMode {
     }
 
 
-
     // ------------------------------------- Coordenadas ------------------------------------------
 
     private final Pose startPose = new Pose(111.7, 133.7, Math.toRadians(90));
@@ -36,7 +35,6 @@ public class EighteenBallsAuto extends NextFTCOpMode {
     public static Pose finalPoseAuto;
 
     // Mid Artifacts
-
     private final Pose prepareMidBalls = new Pose(105, 53.5);
     private final Pose midBalls = new Pose(125, 59, Math.toRadians(15));
 
@@ -50,7 +48,7 @@ public class EighteenBallsAuto extends NextFTCOpMode {
     private final Pose openGate = new Pose(126, 61, 0);
 
 
-    // -------------------------------------------------------------------------------------------
+    // -----------------------------------------Paths-----------------------------------------------
 
 
     private PathChain startToScore, scoreMidBalls, scoreUpBalls, scoreTakeGate, scoreTakeGateAndOpenGate;
@@ -108,6 +106,8 @@ public class EighteenBallsAuto extends NextFTCOpMode {
                 .build();
     }
 
+    // ---------------------------------------------------------------------------------------------
+
     public Command routineAutonomous(){
         return new SequentialGroup(
                 new FollowPath(startToScore, true),
@@ -123,6 +123,8 @@ public class EighteenBallsAuto extends NextFTCOpMode {
                 new FollowPath(scoreTakeGateAndOpenGate, true)
         );
     }
+
+    // -----------------------------------------------------0----------------------------------------
 
     @Override
     public void onInit() {
