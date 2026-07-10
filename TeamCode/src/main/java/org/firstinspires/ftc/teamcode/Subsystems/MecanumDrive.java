@@ -9,16 +9,16 @@ import dev.nextftc.hardware.impl.MotorEx;
 
 public class MecanumDrive {
 
-    private final MotorEx frontLeftMotor = new MotorEx("fl").reversed().brakeMode(); // Port 3
+    private final MotorEx frontLeftMotor = new MotorEx("fl").brakeMode(); // Port 3
     private final MotorEx frontRightMotor = new MotorEx("fr").brakeMode(); // Port 0
 
     private final MotorEx backLeftMotor = new MotorEx("rl").brakeMode(); // Port 2
-    private final MotorEx backRightMotor = new MotorEx("rr").reversed().brakeMode(); // Port 1
+    private final MotorEx backRightMotor = new MotorEx("rr").brakeMode(); // Port 1
 
     public void start() {
         DriverControlledCommand driverControlled = new PedroDriverControlled(
                 () -> (double) -ActiveOpMode.gamepad1().left_stick_y, // Forward e Backward
-                () -> (double) -ActiveOpMode.gamepad1().left_stick_x, // Strafe
+                () -> (double)  ActiveOpMode.gamepad1().left_stick_x, // Strafe
                 () -> (double) -ActiveOpMode.gamepad1().right_stick_x, // Turn
                 true
         );
