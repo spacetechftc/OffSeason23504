@@ -61,7 +61,6 @@ public class TeleOpNextFTC extends NextFTCOpMode {
 
     @Override
     public void onUpdate() {
-
         robotZone.setPosition(PedroComponent.follower().getPose().getX(), PedroComponent.follower().getPose().getY());
         robotZone.setRotation(PedroComponent.follower().getHeading());
 
